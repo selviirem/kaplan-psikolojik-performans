@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selvi İrem Kaplan | Spor Psikolojisi & Mental Performans</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #0076fe;
+            --primary-dark: #0056b8;
+            --dark: #090b11;
+            --card-bg: rgba(255, 255, 255, 0.02);
+            --border: rgba(255, 255, 255, 0.06);
+            --text-main: #f5f7fa;
+            --text-muted: rgba(245, 247, 250, 0.6);
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            font-size: 0.88rem;
+        }
+
+        .bg-animation {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+            background: #05060a; overflow: hidden;
+        }
+        
+        .floating-emoji {
+            position: absolute;
+            bottom: -50px;
+            pointer-events: none;
+            opacity: 0.06;
+            animation: floatUp linear infinite;
+            font-size: 1.5rem;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.07; }
+            90% { opacity: 0.07; }
+            100% { transform: translateY(-105vh) rotate(360deg); opacity: 0; }
+        }
+
+        .grid-lines {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* ========== NAVIGATION ========== */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            padding: 12px 8%; display: flex; justify-content: space-between; align-items: center;
+            background: #ffffff; border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        .brand-wrapper { display: flex; align-items: center; gap: 14px; }
+        
+        .logo-container { display: flex; flex-direction: column; }
+        .logo { font-size: 1.05rem; font-weight: 800; color: #000000; text-decoration: none; letter-spacing: 0.5px; text-transform: uppercase; line-height: 1.2; }
+        .sub-logo { font-size: 0.7rem; font-weight: 600; color: var(--primary); letter-spacing: 0.5px; margin-top: 2px; }
+        .nav-links { display: flex; gap: 20px; list-style: none; align-items: center; }
+        .nav-links a { color: #444444; text-decoration: none; font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--primary); }
+        .mobile-menu-btn { display: none; background: none; border: none; color: #000000; font-size: 1.3rem; cursor: pointer; }
+
+        /* ========== HERO ========== */
+        .hero { min-height: 80vh; display: flex; align-items: center; justify-content: center; padding: 120px 20px 60px; text-align: center; }
+        .hero-content { max-width: 800px; }
+        .hero-badge {
+            display: inline-block; background: rgba(0, 118, 254, 0.08); border: 1px solid var(--primary);
+            color: var(--primary); padding: 5px 14px; border-radius: 50px; font-size: 0.7rem;
+            font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 15px;
+        }
+        .hero h1 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 800; margin-bottom: 15px; letter-spacing: -0.5px; text-transform: uppercase; }
+        .hero-subtitle { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 25px; font-weight: 400; max-width: 650px; margin-left: auto; margin-right: auto; }
+        
+        .btn { display: inline-block; padding: 10px 24px; border-radius: 50px; font-weight: 700; font-size: 0.75rem; text-decoration: none; transition: all 0.3s; border: none; text-transform: uppercase; letter-spacing: 0.5px; }
+        .btn-primary { background: var(--primary); color: white; box-shadow: 0 4px 12px rgba(0, 118, 254, 0.2); }
+        .btn-primary:hover { transform: translateY(-2px); background: var(--primary-dark); }
+
+        /* ========== SECTIONS GENERAL ========== */
+        section { padding: 60px 20px; max-width: 1000px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 35px; }
+        .section-header h2 { font-size: 1.4rem; font-weight: 800; margin-bottom: 8px; text-transform: uppercase; }
+        .section-header .highlight-title { color: var(--primary); font-size: 1.3rem; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; display: block; letter-spacing: 0.5px; }
+        .section-header p { color: var(--text-muted); font-size: 0.85rem; }
+        .divider { width: 35px; height: 3px; background: var(--primary); margin: 12px auto; border-radius: 2px; }
+
+        /* ========== WORK AREAS (IMAGE_2) ========== */
+        .grid-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; margin-top: 25px; }
+        .grid-item { background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 20px; transition: all 0.3s; }
+        .grid-item:hover { border-color: var(--primary); transform: translateY(-2px); }
+        .grid-item .icon { font-size: 1.5rem; margin-bottom: 8px; display: block; }
+        .grid-item h4 { font-size: 0.95rem; margin-bottom: 6px; font-weight: 700; }
+        .grid-item p { font-size: 0.8rem; color: var(--text-muted); }
+
+        /* ========== HOW I WORK (IMAGE_3) ========== */
+        .process-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-top: 30px; text-align: center; }
+        .process-step { background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 20px 15px; position: relative; }
+        .process-badge { width: 30px; height: 30px; background: linear-gradient(135deg, var(--primary), #00c6ff); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; font-weight: 700; font-size: 0.8rem; color: white; }
+        .process-step h4 { font-size: 0.9rem; margin-bottom: 6px; font-weight: 700; }
+        .process-step p { font-size: 0.78rem; color: var(--text-muted); }
+
+        /* ========== SERVICE MODELS (IMAGE_4) ========== */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .service-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 25px; transition: all 0.3s; display: flex; flex-direction: column; }
+        .service-card:hover { transform: translateY(-3px); border-color: var(--primary); }
+        .service-num { font-size: 1.5rem; font-weight: 800; color: rgba(255,255,255,0.05); margin-bottom: 5px; }
+        .service-icon { font-size: 1.5rem; margin-bottom: 12px; display: block; }
+        .service-card h3 { font-size: 1rem; margin-bottom: 8px; font-weight: 700; }
+        .service-card p { color: var(--text-muted); font-size: 0.8rem; margin-bottom: 15px; flex-grow: 1; }
+        .service-card ul { list-style: none; }
+        .service-card ul li { padding: 4px 0; color: var(--text-muted); font-size: 0.78rem; display: flex; align-items: center; gap: 6px; }
+        .service-card ul li::before { content: '✓'; color: var(--primary); font-weight: bold; }
+
+        /* ========== BIOGRAPHY ACCORDIONS (IMAGE_5) ========== */
+        .accordion-container { max-width: 750px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
+        .accordion-item { border: 1px solid var(--border); border-radius: 8px; background: var(--card-bg); overflow: hidden; }
+        .accordion-header { padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; transition: background 0.3s; cursor: pointer; }
+        .accordion-header:hover { background: rgba(255,255,255,0.01); }
+        .accordion-title { font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; gap: 10px; }
+        .accordion-arrow { font-size: 0.7rem; color: var(--primary); transition: transform 0.3s; }
+        .accordion-content { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out, padding 0.3s; color: var(--text-muted); font-size: 0.82rem; line-height: 1.6; }
+        .accordion-item.active .accordion-content { padding: 15px 20px 20px; max-height: 300px; }
+        .accordion-item.active .accordion-arrow { transform: rotate(180deg); }
+
+        /* ========== WEEKLY BLOG SYSTEM ========== */
+        .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
+        .blog-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: all 0.3s; display: flex; flex-direction: column; }
+        .blog-card:hover { border-color: var(--primary); transform: translateY(-3px); }
+        .blog-meta { padding: 12px 18px 0; display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--text-muted); }
+        .blog-content { padding: 18px; display: flex; flex-direction: column; flex-grow: 1; }
+        .blog-card h3 { font-size: 0.95rem; margin-bottom: 8px; font-weight: 700; }
+        .blog-card p { color: var(--text-muted); font-size: 0.8rem; margin-bottom: 12px; flex-grow: 1; }
+        .blog-card .read-more { color: var(--primary); text-decoration: none; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; }
+
+        /* ========== CONTACT & SOCIALS ========== */
+        .contact-box { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 35px 20px; text-align: center; }
+        .contact-methods { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+        .contact-method { display: flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(255,255,255,0.02); border-radius: 50px; border: 1px solid var(--border); text-decoration: none; color: white; font-size: 0.78rem; font-weight: 600; transition: all 0.3s; }
+        .contact-method:hover { border-color: var(--primary); background: rgba(0, 118, 254, 0.04); }
+
+        /* ========== LIVE CHAT WIDGET ========== */
+        .chat-widget { position: fixed; bottom: 20px; right: 20px; z-index: 2000; }
+        .chat-button { width: 50px; height: 50px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; color: white; box-shadow: 0 4px 12px rgba(0,118,254,0.3); transition: transform 0.3s; cursor: pointer; }
+        .chat-button:hover { transform: scale(1.05); }
+        .chat-window { display: none; position: absolute; bottom: 60px; right: 0; width: 290px; background: #11141d; border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.5); overflow: hidden; }
+        .chat-window.open { display: block; }
+        .chat-header { background: var(--primary); padding: 12px; color: white; font-weight: bold; font-size: 0.8rem; display: flex; justify-content: space-between; align-items: center; }
+        .chat-header span:last-child { opacity: 0.7; cursor: pointer; }
+        .chat-body { padding: 12px; }
+        .chat-msg { background: rgba(255,255,255,0.02); padding: 8px; border-radius: 6px; font-size: 0.75rem; margin-bottom: 10px; color: var(--text-muted); }
+        .chat-form input, .chat-form textarea { width: 100%; padding: 7px; margin-bottom: 6px; background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 5px; color: white; font-size: 0.75rem; }
+        .chat-form button { width: 100%; padding: 7px; background: var(--primary); border: none; color: white; font-weight: bold; border-radius: 5px; font-size: 0.75rem; cursor: pointer; }
+
+        footer { text-align: center; padding: 30px 20px; border-top: 1px solid var(--border); color: rgba(255,255,255,0.25); font-size: 0.75rem; margin-top: 35px; }
+        /* İsmine özel asil mavi vurgusu */
+        footer .footer-name { color: var(--primary); font-weight: 600; text-decoration: none; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: #ffffff; padding: 15px; gap: 12px; border-bottom: 1px solid rgba(0,0,0,0.05); }
+            .nav-links.open { display: flex; }
+            .mobile-menu-btn { display: block; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-animation" id="emojiBg"></div>
+    <div class="grid-lines"></div>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="brand-wrapper">
+            <div class="logo-container">
+                <a href="#" class="logo">SELVİ İREM KAPLAN</a>
+                <span class="sub-logo">Psikolog | Spor Psikoloğu</span>
+            </div>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#hakkimda">Hakkımda</a></li>
+            <li><a href="#alanlar">Çalışma Alanlarım</a></li>
+            <li><a href="#hizmetler">Hizmet Modelleri</a></li>
+            <li><a href="#blog">Haftalık Blog</a></li>
+            <li><a href="#iletisim">İletişim</a></li>
+        </ul>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Mental Performans & Gelişim Danışmanlığı</div>
+            <h1>Potansiyel zihinde başlar,<br><span style="color: var(--primary);">sahada devleşir.</span></h1>
+            <p class="hero-subtitle">Bireysel atletler, takımlar ve yüksek performans hedefleyen profesyoneller için bilimsel temelli zihinsel antrenman yapılandırmaları.</p>
+            <div class="hero-cta">
+                <a href="#iletisim" class="btn btn-primary">Seans Ön Başvurusu Yap</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Accordion Section (IMAGE_5 & Biyografi) -->
+    <section id="hakkimda">
+        <div class="section-header">
+            <h2>🧠 KURUMSAL PROFİL</h2>
+            <div class="divider"></div>
+            <p>Spor psikolojisini "motivasyon konuşması" olarak değil, ölçülebilir performans sistemi olarak ele alan bir uzmanım.</p>
+        </div>
+        
+        <div class="accordion-container">
+            <div class="accordion-item active">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span class="accordion-title">👤 Selvi İrem Kaplan Kimdir?</span>
+                    <span class="accordion-arrow">▲</span>
+                </div>
+                <div class="accordion-content">
+                    Selvi İrem Kaplan, İstanbul Gelişim Üniversitesi Psikoloji Lisans eğitimini tamamlamış ve spor psikolojisi alanına odaklanan bir psikologdur. İnsan performansı, zihinsel dayanıklılık, motivasyon ve sporcu psikolojisi üzerine çalışmalar yürütmekte; psikoloji biliminin spordaki uygulamalarını erişilebilir bir dille paylaşmaktadır. İçeriklerinde performans gelişimi, mental beceriler ve psikolojik iyi oluş konularına yer vermektedir.
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span class="accordion-title">⚙️ Çalışma Perspektifim</span>
+                    <span class="accordion-arrow">▲</span>
+                </div>
+                <div class="accordion-content">
+                    Bireysel veya takım bazında, sporcuların sahada karşılaştığı zihinsel bariyerleri objektif verilerle haritalandırıyor ve sürdürülebilir, bilimsel yaklaşımlarla gelişim takipleri kurguluyorum.
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span class="accordion-title">🛡️ Çalışma Yaklaşımım</span>
+                    <span class="accordion-arrow">▲</span>
+                </div>
+                <div class="accordion-content">
+                    Sadece müsabaka anına değil; antrenman istikrarına, sakatlık sonrası mental rehabilitasyon süreçlerine ve sporcunun genel psikolojik iyi oluş dengesine odaklanan bütüncül bir yaklaşım benimsiyorum.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Areas Section (IMAGE_2) -->
+    <section id="alanlar">
+        <div class="section-header">
+            <span class="highlight-title">FARKI YARATAN ŞEY: BASKI ANINDA DÜŞMEYEN ZİHİN.</span>
+            <p>Çalışma Alanlarım:</p>
+            <div class="divider"></div>
+        </div>
+        <div class="grid-list">
+            <div class="grid-item">
+                <span class="icon">🎯</span>
+                <h4>Maç İçi Karar Verme</h4>
+                <p>Baskı altında taktiksel sadakat ve doğru karar verme kalitesini maksimuma çıkarma.</p>
+            </div>
+            <div class="grid-item">
+                <span class="icon">⚽</span>
+                <h4>Penaltı / Kritik An Yönetimi</h4>
+                <p>Kritik dakikalarda ve kırılma anlarında zihinsel stabilite ve stres kontrolü.</p>
+            </div>
+            <div class="grid-item">
+                <span class="icon">🔄</span>
+                <h4>Sakatlık Sonrası Dönüş</h4>
+                <p>Saha içi blokajları aşma, yeniden güven inşası ve zihinsel rehabilitasyon.</p>
+            </div>
+            <div class="grid-item">
+                <span class="icon">🛡️</span>
+                <h4>Takım Mental Dayanıklılığı</h4>
+                <p>Uzun ve stresli lig maratonlarında takım içi psikodinamik yapının korunması.</p>
+            </div>
+            <div class="grid-item">
+                <span class="icon">📉</span>
+                <h4>Performans Düşüş Döngüleri</h4>
+                <p>Form düşüşlerini ve bireysel/kronik kriz süreçlerini bilimsel metotlarla kırma.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How I Work Section (IMAGE_3) -->
+    <section id="nasil-calisiyorum">
+        <div class="section-header">
+            <h2>📊 NASIL ÇALIŞIYORUM?</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="process-container">
+            <div class="process-step">
+                <div class="process-badge">1</div>
+                <h4>Analiz</h4>
+                <p>Mevcut durumun ve zihinsel ihtiyaçların değerlendirilmesi.</p>
+            </div>
+            <div class="process-step">
+                <div class="process-badge">2</div>
+                <h4>Zihinsel Haritalama</h4>
+                <p>Zihinsel profillerin ve bariyerlerin çıkarılması.</p>
+            </div>
+            <div class="process-step">
+                <div class="process-badge">3</div>
+                <h4>Risk Tespiti</h4>
+                <p>Zihinsel kırılma noktalarının önceden tespiti.</p>
+            </div>
+            <div class="process-step">
+                <div class="process-badge">4</div>
+                <h4>Müdahale</h4>
+                <p>Özelleştirilmiş mental müdahale planı.</p>
+            </div>
+            <div class="process-step">
+                <div class="process-badge">5</div>
+                <h4>Takip</h4>
+                <p>Sürekli gelişim izleme ve saha içi adaptasyon.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Models Section (IMAGE_4) -->
+    <section id="hizmetler">
+        <div class="section-header">
+            <h2>⚙️ HİZMET MODELLERİ</h2>
+            <div class="divider"></div>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <span class="service-num">01</span>
+                <span class="service-icon">📊</span>
+                <h3>Takım Bazlı Performans Sistemi</h3>
+                <p>Sezon boyunca takımın zihinsel dalgalanmalarını takip eden profesyonel entegre model.</p>
+                <ul>
+                    <li>Sezon içi düzenli mental performans takibi</li>
+                    <li>Maç öncesi / maç içi zihinsel hazırlık protokolleri</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <span class="service-num">02</span>
+                <span class="service-icon">🎯</span>
+                <h3>Oyuncu Bazlı Bireysel Müdahale</h3>
+                <p>Bireysel kriz yaşayan veya form grafiğini yükseltmek isteyen kritik oyunculara yönelik özelleştirilmiş model.</p>
+                <ul>
+                    <li>Kronik form düşüşü analizi ve çözümü</li>
+                    <li>Baskı altında ani performans kaybı engelleme</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <span class="service-num">03</span>
+                <span class="service-icon">🤝</span>
+                <h3>Teknik Ekip Danışmanlığı</h3>
+                <p>Teknik direktör ve antrenör grubunun stratejik karar kalitesini destekleyen model.</p>
+                <ul>
+                    <li>Teknik direktör ile karar alma süreç optimizasyonu</li>
+                    <li>Soyunma odası dinamikleri ve yönetim modelleri</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Weekly Blog Section -->
+    <section id="blog">
+        <div class="section-header">
+            <h2>📝 Haftalık Blog & Aktiviteler</h2>
+            <div class="divider"></div>
+            <p>Her hafta güncellenen zihinsel beceriler, aktiviteler ve spor psikolojisi yazıları.</p>
+        </div>
+        <div class="blog-grid">
+            <div class="blog-card">
+                <div class="blog-meta">
+                    <span>📅 Bu Hafta</span>
+                    <span style="color:var(--primary)">#Performans</span>
+                </div>
+                <div class="blog-content">
+                    <h3>Zihinsel Antrenman Nedir ve Sahaya Nasıl Yansır?</h3>
+                    <p>Fiziksel idmanlar kadar kritik olan zihinsel provanın nörolojik temelleri ve pratik saha teknikleri.</p>
+                    <a href="javascript:void(0)" onclick="openChatWithContext('Blog: Zihinsel Antrenman yazısı hakkında bilgi istiyorum.')" class="read-more">Hakkında Soru Sor →</a>
+                </div>
+            </div>
+            <div class="blog-card">
+                <div class="blog-meta">
+                    <span>📅 Geçen Hafta</span>
+                    <span style="color:var(--primary)">#Dayanıklılık</span>
+                </div>
+                <div class="blog-content">
+                    <h3>Hatalardan Beslenmek: Mental Toparlanma Hızı</h3>
+                    <p>Müsabaka sırasında yapılan bir hataya takılıp kalmamak ve odağı saniyeler içinde yeniden kurabilmenin psikolojik formülü.</p>
+                    <a href="javascript:void(0)" onclick="openChatWithContext('Blog: Mental Toparlanma yazısı hakkında bilgi istiyorum.')" class="read-more">Hakkında Soru Sor →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="iletisim">
+        <div class="contact-box">
+            <h2 style="font-size:1.3rem; margin-bottom: 8px;">📩 İletişim Kanalları</h2>
+            <p style="color:var(--text-muted); font-size:0.8rem;">Sorularınız ve seans süreçleri için bana aşağıdaki resmi adreslerimden ulaşabilirsiniz.</p>
+            
+            <div class="contact-methods">
+                <a href="https://instagram.com/psk.selviiremkaplan" target="_blank" class="contact-method">
+                    <span>📸</span> <span>@psk.selviiremkaplan</span>
+                </a>
+                <a href="https://www.tiktok.com/@psk.selviiremkaplan" target="_blank" class="contact-method">
+                    <span>🎵</span> <span>@psk.selviiremkaplan</span>
+                </a>
+                <a href="mailto:psk.selviiremkaplan@gmail.com" class="contact-method">
+                    <span>✉️</span> <span>psk.selviiremkaplan@gmail.com</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 <a href="#" class="footer-name">Selvi İrem Kaplan</a> — Tüm Hakları Saklıdır.</p>
+    </footer>
+
+    <!-- LIVE CHAT WIDGET -->
+    <div class="chat-widget">
+        <div class="chat-button" onclick="toggleChatWindow()">💬</div>
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <span>Selvi İrem Kaplan - Canlı Asistan</span>
+                <span onclick="toggleChatWindow()">✕</span>
+            </div>
+            <div class="chat-body">
+                <div class="chat-msg">Merhaba! Telefon numaranız gerekmeden bana buradan direkt mesaj gönderebilirsiniz. En kısa sürede mail adresinize dönüş yapacağım.</div>
+                <form class="chat-form" action="https://formspree.io/f/YOUR_ID_HERE" method="POST" onsubmit="handleChatSubmit(event)">
+                    <input type="text" name="name" placeholder="Adınız Soyadınız" required>
+                    <input type="email" name="email" placeholder="E-posta Adresiniz" required>
+                    <textarea name="message" id="chatMessageField" rows="3" placeholder="Mesajınız..." required></textarea>
+                    <button type="submit">Mesajı Gönder</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('navLinks').classList.toggle('open');
+        }
+
+        function toggleChatWindow() {
+            document.getElementById('chatWindow').classList.toggle('open');
+        }
+
+        function toggleAccordion(element) {
+            const item = element.parentElement;
+            item.classList.toggle('active');
+        }
+
+        function openChatWithContext(contextText) {
+            document.getElementById('chatWindow').classList.add('open');
+            document.getElementById('chatMessageField').value = contextText + " ";
+            document.getElementById('chatMessageField').focus();
+        }
+
+        function handleChatSubmit(e) {
+            if(e.target.action.includes("YOUR_ID_HERE")) {
+                e.preventDefault();
+                alert("Mesaj asistan modülü simüle edildi. Canlı bildirim almak için sistem hazır.");
+                toggleChatWindow();
+            }
+        }
+
+        /* DİNAMİK ARKA PLAN EMOJİ SİSTEMİ */
+        const emojis = ['⚽', '🏀', '🎾', '🎯', '🏃', '🏆'];
+        const bgContainer = document.getElementById('emojiBg');
+
+        function createFloatingEmoji() {
+            const emojiEl = document.createElement('div');
+            emojiEl.classList.add('floating-emoji');
+            
+            emojiEl.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+            
+            emojiEl.style.left = Math.random() * 100 + 'vw';
+            const duration = Math.random() * 12 + 8;
+            emojiEl.style.animationDuration = duration + 's';
+            
+            const size = Math.random() * 0.8 + 0.8;
+            emojiEl.style.fontSize = size + 'rem';
+
+            bgContainer.appendChild(emojiEl);
+
+            setTimeout(() => {
+                emojiEl.remove();
+            }, duration * 1000);
+        }
+
+        for(let i=0; i<8; i++) {
+            setTimeout(createFloatingEmoji, Math.random() * 5000);
+        }
+        setInterval(createFloatingEmoji, 3000);
+    </script>
+</body>
+</html>
