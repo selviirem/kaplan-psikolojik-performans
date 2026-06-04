@@ -412,24 +412,12 @@
     </footer>
 
     <!-- LIVE CHAT WIDGET -->
-    <div class="chat-widget">
-        <div class="chat-button" onclick="toggleChatWindow()">💬</div>
-        <div class="chat-window" id="chatWindow">
-            <div class="chat-header">
-                <span>Selvi İrem Kaplan - Canlı Asistan</span>
-                <span onclick="toggleChatWindow()">✕</span>
-            </div>
-            <div class="chat-body">
-                <div class="chat-msg">Merhaba! Telefon numaranız gerekmeden bana buradan direkt mesaj gönderebilirsiniz. En kısa sürede mail adresinize dönüş yapacağım.</div>
-                <form class="chat-form" action="https://formspree.io/f/YOUR_ID_HERE" method="POST" onsubmit="handleChatSubmit(event)">
-                    <input type="text" name="name" placeholder="Adınız Soyadınız" required>
-                    <input type="email" name="email" placeholder="E-posta Adresiniz" required>
-                    <textarea name="message" id="chatMessageField" rows="3" placeholder="Mesajınız..." required></textarea>
-                    <button type="submit">Mesajı Gönder</button>
-                </form>
-            </div>
-        </div>
-    </div>
+    <!-- EMAIL CANLI DESTEK WIDGET -->
+<div class="chat-widget">
+    <a href="mailto:psk.selviiremkaplan@gmail.com?subject=Web%20Sitenizden%20Mesaj%20Var&body=Merhaba%20Selvi%20İrem%20Hanım," class="chat-button" style="background: #0078d4; box-shadow: 0 4px 12px rgba(0,120,212,0.3); text-decoration: none;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="white" style="margin-top: 4px;"><path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z"/></svg>
+    </a>
+</div>
 
     <script>
         function toggleMobileMenu() {
